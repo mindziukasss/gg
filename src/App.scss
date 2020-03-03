@@ -1,0 +1,14 @@
+@import 'style/image';
+@import 'style/footer';
+@import 'style/home';
+
+
+body, html {
+  margin: auto;
+  padding: 0;
+  height: 100%;
+  background-image: url("/b-gamybos-grupe.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}

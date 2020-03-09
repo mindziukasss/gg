@@ -7,12 +7,14 @@ import CardMedia from '@material-ui/core/CardMedia';
 
 const Home = () => {
 
+    const linkPage = 'page/';
+
     return (
-        <Container maxWidth="md">
+        <Container maxWidth="md" style={{ minHeight: 'calc(100vh - 160px)'}}>
             <Grid container spacing={4} className={'grid'}>
                 <Grid item xs={12} sm={12} md={4} lg={4} >
                     <Card className={'card-paper'}>
-                        <CardActionArea href={'apie_mus'}>
+                        <CardActionArea href={ linkPage + 'apie-mus'}>
                             <CardMedia
                                 className={'box'}
                             >Apie mus</CardMedia>
@@ -21,7 +23,7 @@ const Home = () => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={8} lg={8} >
                     <Card className={'card'}>
-                        <CardActionArea href={'galerija'}>
+                        <CardActionArea href={ linkPage + 'galerija'}>
                             <CardMedia
                                 className={'box-image'}
                                 image="/gamybos-grupe-galerija.jpg"
@@ -31,7 +33,7 @@ const Home = () => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={8} lg={8} >
                     <Card className={'card'}>
-                        <CardActionArea href={'kontaktai'}>
+                        <CardActionArea href={ linkPage + 'kontaktai'}>
                             <CardMedia
                                 className={'box-image'}
                                 image="/gamybos-grupe-baldai.jpg"
@@ -41,7 +43,7 @@ const Home = () => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={4} lg={4} >
                     <Card className={'card-paper'}>
-                        <CardActionArea href={'partneriai'}>
+                        <CardActionArea href={ linkPage + 'partneriai'}>
                             <CardMedia
                                 className={'box'}
                             >Partneriai</CardMedia>
@@ -50,7 +52,6 @@ const Home = () => {
                 </Grid>
             </Grid>
         </Container>
-
     );
 };
 

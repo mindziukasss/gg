@@ -3,7 +3,7 @@
 @import 'style/home';
 
 
-body, html {
+ html, body {
   margin: auto;
   padding: 0;
   height: 100%;
@@ -11,4 +11,5 @@ body, html {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  font-family: "Times New Roman", Times, serif !important;
 }

@@ -10,14 +10,8 @@ import {GgLogo} from "../ui/icons";
 class Header extends Component {
     render() {
         return (
-            <AppBar
-                position={'sticky'}
-                style={{
-                    background: '#ffffff',
-                    padding: '10px 0',
-                }}
-            >
-                <Toolbar style={{display: 'flex'}}>
+            <AppBar className={'header'}>
+                <Toolbar className={'display-flex'}>
                     <div className={'header_logo'}>
                         <div>
                             <GgLogo
@@ -29,16 +23,16 @@ class Header extends Component {
                         </div>
                     </div>
                     <div style={{marginLeft: '65%'}} >
-                    <Link to={''} style={{textDecoration: 'unset'}}>
+                    <Link to={''} className={'text-decoration-unset'}>
                         <Button href=''>Apie Mus</Button>
                     </Link>
-                    <Link to={''} style={{textDecoration: 'unset'}}>
+                    <Link to={''} className={'text-decoration-unset'}>
                         <Button href=''>Galerija</Button>
                     </Link>
-                        <Link to={''} style={{textDecoration: 'unset'}}>
+                        <Link to={''} className={'text-decoration-unset'}>
                             <Button href=''>Partneriai</Button>
                         </Link>
-                    <Link to={''} style={{textDecoration: 'unset'}}>
+                    <Link to={''} className={'text-decoration-unset'}>
                         <Button href=''>Kontaktai</Button>
                     </Link>
                     </div>

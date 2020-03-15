@@ -4,6 +4,7 @@ import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
+import './style/home.scss';
 
 const Home = () => {
 
@@ -11,9 +12,9 @@ const Home = () => {
 
     return (
         <Container maxWidth="md" style={{ minHeight: 'calc(100vh - 160px)'}}>
-            <Grid container spacing={4} className={'grid'}>
+            <Grid container spacing={4} className='grid'>
                 <Grid item xs={12} sm={12} md={4} lg={4} >
-                    <Card className={'card-paper'}>
+                    <Card className='card-paper'>
                         <CardActionArea href={ linkPage + 'apie-mus'}>
                             <CardMedia
                                 className={'box'}
@@ -22,30 +23,30 @@ const Home = () => {
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={12} md={8} lg={8} >
-                    <Card className={'card'}>
+                    <Card className='card'>
                         <CardActionArea href={ linkPage + 'galerija'}>
                             <CardMedia
-                                className={'box-image'}
-                                image="/gamybos-grupe-galerija.jpg"
+                                className='box-image'
+                                image="/image/gamybos-grupe-galerija.jpg"
                             >Galerija</CardMedia>
                         </CardActionArea>
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={12} md={8} lg={8} >
-                    <Card className={'card'}>
+                    <Card className='card'>
                         <CardActionArea href={ linkPage + 'kontaktai'}>
                             <CardMedia
-                                className={'box-image'}
-                                image="/gamybos-grupe-baldai.jpg"
+                                className='box-image'
+                                image="/image/gamybos-grupe-baldai.jpg"
                             >Kontaktai</CardMedia>
                         </CardActionArea>
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={12} md={4} lg={4} >
-                    <Card className={'card-paper'}>
+                    <Card className='card-paper'>
                         <CardActionArea href={ linkPage + 'partneriai'}>
                             <CardMedia
-                                className={'box'}
+                                className='box'
                             >Partneriai</CardMedia>
                         </CardActionArea>
                     </Card>

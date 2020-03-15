@@ -1,0 +1,28 @@
+.header {
+  position: sticky !important;
+  background: #ffffff !important;
+  padding: 10px 0;
+
+  .displayFlex {
+    display: flex;
+
+    .headerLogo {
+      position: absolute;
+      right: 50%;
+
+      .logo {
+        width: 155px;
+        height: 55px;
+        background-image: url("/image/gamybos-grupe.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    }
+
+    .textDecorationUnset {
+      text-decoration: unset;
+    }
+
+  }
+
+}

@@ -25,6 +25,8 @@
         background-color: #cfd8dc;
         cursor: pointer;
         font-size: 45px;
+        text-shadow: 4px 0px 5px #000;
+
       }
 
     }
@@ -37,6 +39,7 @@
 
     &:hover {
       box-shadow: 25px 25px 12px 0px rgba(198, 200, 204, 1)
+
     }
 
     .box-image {
@@ -52,6 +55,7 @@
       &:hover {
         font-size: 65px;
         box-shadow: 25px 10px 12px 0px rgba(198, 200, 204, 1);
+        text-shadow: 5px -4px 4px #c6c8cc;
       }
 
     }

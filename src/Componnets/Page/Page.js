@@ -1,59 +1,39 @@
 import React, {Component} from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Grid from '@material-ui/core/Grid';
-
-const BASE_URl = 'http://127.0.0.1:8000/api/page/';
+import {NetworkHelper} from "../Service/NetworkHelper";
+import './style/page.scss'
 
 class Page extends Component {
 
     constructor() {
         super();
-        this.state={data:false
-        }
+        this.state={data:false}
     }
 
-    componentDidMount() {
-        fetch(BASE_URl + this.props.match.params.id, {
-            method: 'GET',
-            headers: {
-                'Accept':'application/json',
-                'Content-Type':'application/json',
-            }
-        }).then((page) => {
-            page.json().then((resp) => {
-                this.setState({data:resp})
+    componentDidMount()
+    {
+        NetworkHelper
+            .get('page/' + this.props.match.params.id)
+            .then((response) =>
+            {
+                this.setState({data: response})
             })
-        })
     }
 
     render() {
-        const data = this.state.data;
-
+        const data = this.state.data[0];
         return (
-
-            <div style={{minHeight: 'calc(100vh - 160px)'}}>
+            <div className={'block-page'}>
                 {
                     data ?
-
-                        <div style={{textAlign: 'center'}}>
-                            <h1>{data[0].title}</h1>
-                            {ReactHtmlParser(data[0].description)}
+                        <div className={'title-page'}>
+                            <h1>{data.title}</h1>
+                            {ReactHtmlParser(data.description)}
                         </div>
                         :
-                        <div style={{
-                            position: 'absolute',
-                            left: '50%',
-                            top: '50%',
-                            transform: 'translate(-50%, -50%)'
-                        }}>
-                            <CircularProgress style=
-                                                  {{
-                                                      color: "#cfd8dc",
-                                                      width: '80px',
-                                                      height: '80px'
-                                                  }}
-                                              disableShrink/>
+                        <div className={'circular-page'}>
+                            <CircularProgress className={'circular-size'} disableShrink/>
                         </div>
                 }
             </div>

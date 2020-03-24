@@ -6,9 +6,27 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 
 import {Link} from "react-router-dom";
+import {NetworkHelper} from "../Service/NetworkHelper";
 
 class Header extends Component {
+
+    constructor() {
+        super();
+        this.state={data:[]}
+    }
+
+    componentDidMount()
+    {
+        NetworkHelper
+            .get('menu')
+            .then((response) =>
+            {
+                this.setState({data: response})
+            })
+    }
+
     render() {
+        const data = this.state.data;
         return (
             <AppBar className='header'>
                 <Toolbar className='displayFlex'>
@@ -17,18 +35,14 @@ class Header extends Component {
                         </div></Link>
                     </div>
                     <div style={{marginLeft: '65%'}} >
-                    <Link to={''} className='textDecorationUnset'>
-                        <Button href=''>Apie Mus</Button>
-                    </Link>
-                    <Link to={''} className='textDecorationUnset'>
-                        <Button href=''>Galerija</Button>
-                    </Link>
-                        <Link to={''} className='textDecorationUnset'>
-                            <Button href=''>Partneriai</Button>
-                        </Link>
-                    <Link to={''} className='textDecorationUnset'>
-                        <Button href=''>Kontaktai</Button>
-                    </Link>
+                        {data.map((menu, index) => {
+                            let url = menu.type+'/'+menu.slug;
+                            console.log(url);
+                           return  <Link key ={index}
+                                         to={url} className='textDecorationUnset'>
+                               <Button>{menu.title}</Button>
+                           </Link>
+                        })}
                     </div>
                 </Toolbar>
             </AppBar>

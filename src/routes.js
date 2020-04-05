@@ -4,12 +4,12 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./Componnets/Home/Home";
 import Page from "./Componnets/Page/Page";
 
-const Routes = (props) => {
+const Routes = () => {
     return (
         <Layout>
             <Switch>
                 <Route path={"/"} exact component={Home}/>
-                <Route {...props} path={'/page/:id'} exact component={Page} />
+                <Route path={'/:type/:id'} exact component={Page} />
             </Switch>
         </Layout>
     )

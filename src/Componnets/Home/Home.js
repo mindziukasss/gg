@@ -9,6 +9,7 @@ import './style/home.scss';
 const Home = () => {
 
     const linkPage = 'page/';
+    const linkGallery = 'gallery/';
 
     return (
         <Container maxWidth="md" style={{ minHeight: 'calc(100vh - 160px)'}}>
@@ -24,7 +25,7 @@ const Home = () => {
                 </Grid>
                 <Grid item xs={12} sm={12} md={8} lg={8} >
                     <Card className='card'>
-                        <CardActionArea href={ linkPage + 'galerija'}>
+                        <CardActionArea href={ linkGallery + 'galerija'}>
                             <CardMedia
                                 className='box-image'
                                 image="/image/gamybos-grupe-galerija.jpg"

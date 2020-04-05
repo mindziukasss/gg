@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import CircularProgress from '@material-ui/core/CircularProgress';
+
 import {NetworkHelper} from "../Service/NetworkHelper";
 import './style/page.scss'
 
@@ -8,17 +9,27 @@ class Page extends Component {
 
     constructor() {
         super();
-        this.state={data:false}
+        this.state = {
+            data: false,
+        }
     }
 
-    componentDidMount()
-    {
+    getData() {
         NetworkHelper
-            .get('page/' + this.props.match.params.id)
-            .then((response) =>
-            {
+            .get(`${this.props.match.params.type}/${this.props.match.params.id}`)
+            .then((response) => {
                 this.setState({data: response})
             })
+    }
+
+    componentDidMount() {
+       this.getData();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (this.props.match.url !== prevProps.match.url) {
+            this.getData();
+        }
     }
 
     render() {

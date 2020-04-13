@@ -1,0 +1,35 @@
+.grid {
+  padding: 15px 0px 0px 0px;
+
+  .card-paper {
+    margin: -7px 0 0 0px;
+
+    &:hover {
+      box-shadow: 25px 25px 12px 0px rgba(198, 200, 204, 1);
+    }
+  }
+
+  .box-gallery {
+    min-height: 250px;
+    white-space: nowrap;
+    margin-bottom: unset;
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    text-align: center;
+
+    &:hover {
+      background-color: #cfd8dc;
+      cursor: pointer;
+      font-size: 45px;
+      text-shadow: 4px 0px 5px #000;
+
+    }
+  }
+
+  .title-page {
+    text-align: center;
+  }
+}

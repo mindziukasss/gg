@@ -1,7 +1,7 @@
 .grid {
   padding: 15px 0px 0px 0px;
 
-  .card-paper {
+  .card-galleries {
     margin: -7px 0 0 0px;
 
     &:hover {
@@ -31,5 +31,27 @@
 
   .title-page {
     text-align: center;
+  }
+}
+
+.gallery {
+  opacity: 0;
+}
+
+.gallery {
+  -webkit-animation: cssAnimationGallery 1s forwards;
+  animation: cssAnimationGallery 1s forwards;
+  animation-duration: 1s;
+}
+
+@keyframes cssAnimationGallery {
+  0% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

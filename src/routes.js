@@ -5,6 +5,7 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './Componnets/Home/Home';
 import Page from './Componnets/Page/Page';
 import Gallery from './Componnets/Gallery/Gallery';
+import GalleryItem from './Componnets/Gallery/GalleryItem';
 
 const Routes = () => {
     return (
@@ -12,6 +13,7 @@ const Routes = () => {
             <Switch>
                 <Route path={'/'} exact component={Home}/>
                 <Route path={'/:gallery'} exact component={Gallery} />
+                <Route path={'/gallery/:id'} exact component={GalleryItem} />
                 <Route path={'/:type/:id'} exact component={Page} />
             </Switch>
         </Layout>

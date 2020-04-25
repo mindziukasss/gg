@@ -31,7 +31,7 @@ class Header extends Component {
         this.state.data.map((menu, i) => {
             if (menu.subMenu) {
                 return <NavLink key={menu.menuId} to={`#`}  className='textDecorationUnset'>
-                    <SubMenu subMenu = {menu.subMenu} menuSlug={`/${menu.type}/${menu.slug}`} title = {menu.title}/>
+                    <SubMenu subMenu = {menu.subMenu} menuSlug={`/${menu.type}`} title = {menu.title}/>
                 </NavLink>
             } else {
                 return <NavLink key={menu.menuId} to={`/${menu.type}/${menu.slug}`} className='textDecorationUnset'>

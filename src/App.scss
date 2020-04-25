@@ -11,3 +11,7 @@ html, body {
    font-family: 'Poppins', sans-serif;
   //font-family: "Times New Roman", Times, serif !important;
 }
+
+.ReactModal__Overlay.ReactModal__Overlay--after-open {
+  z-index: 1100 !important;
+}

@@ -1,0 +1,23 @@
+.spinnerLoad {
+  opacity: 1;
+}
+
+
+.spinnerLoad {
+  -webkit-animation: cssAnimationSpinner 3s forwards;
+  animation: cssAnimationSpinner 3s forwards;
+  animation-duration: 3s;
+}
+
+@keyframes cssAnimationSpinner {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+
+}

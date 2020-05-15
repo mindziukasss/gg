@@ -8,6 +8,7 @@ import Container from "@material-ui/core/Container";
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css'
 import SpinnerLoad from "../UI/SpinnerLoad";
+import BackLink from "../UI/BackLink";
 
 const linkMedia = 'http://127.0.0.1:8000/uploads/galleries/';
 
@@ -20,6 +21,9 @@ class GalleryItem extends Component {
             clickImage: null,
             photoIndex: 0,
             isOpen: false,
+            holder: [],
+            showElement: 0,
+            showBackLink: true,
         }
 
     }
@@ -28,7 +32,7 @@ class GalleryItem extends Component {
         NetworkHelper
             .get(`gallery/${this.props.match.params.id}`)
             .then((response) => {
-                this.setState({data: response})
+                this.setState({data: response, holder: response})
             })
     }
 
@@ -40,6 +44,11 @@ class GalleryItem extends Component {
         if (this.props.match.url !== prevProps.match.url) {
             this.getData();
         }
+
+        if (this.state.showElement !== prevState.showElement) {
+            this.getData();
+        }
+
     }
 
     handleClick = (event, clickImage) => {
@@ -51,49 +60,72 @@ class GalleryItem extends Component {
 
        this.setState({
            bigImage: images,
-           photoIndex: clickImage
+           photoIndex: clickImage,
+           showBackLink: false
        })
 
     };
 
     handleClose = () => {
-        this.setState({ bigImage: null });
+        this.setState({
+            bigImage: null,
+            showBackLink: true
+        });
     };
 
 
-    showCard = () => (
-
+    showCard = (j) => (
         this.state.data.map((gallery, i) => (
                 gallery.gallery.media.map((m, i) => {
-                    return <Grid key={i} item xs={12} sm={12} md={4} lg={4}>
-                        <Card className='card-galleries'>
-                            <CardActionArea href={''} onClick={() => this.handleClick(gallery.gallery.media, i)}>
-                                <CardMedia id={i} className='box-gallery' image={linkMedia + m.fileName}></CardMedia>
-                            </CardActionArea>
-                        </Card>
-                    </Grid>
-
+                    return this.card(i, j, m, gallery);
                 })
             )
-
         )
+
     );
+
+
+    card = (i, j, m, gallery) => {
+        if (i < this.state.showElement) {
+            return <Grid key={i} item xs={12} sm={12} md={4} lg={4}>
+                <Card className='card-galleries'>
+                    <CardActionArea href={''} onClick={() => this.handleClick(gallery.gallery.media, i)}>
+                        <CardMedia id={i} className='box-gallery' image={linkMedia + m.fileName}></CardMedia>
+                    </CardActionArea>
+                </Card>
+            </Grid>;
+        }
+
+        if(i === this.state.showElement){
+            setTimeout(() => {
+                this.setState({
+                    data: this.state.holder,
+                    holder: this.state.holder,
+                    showElement: ++this.state.showElement
+                })
+            }, 500);
+        }
+    };
 
     render() {
         const data = this.state.data;
-
+        console.log(data[0])
+        const designerTitle = this.state.data[0] ? this.state.data[0].title : null
         const bigImage = this.state.bigImage ? this.state.bigImage : null;
         const galleryTitle = this.state.data[0] ? this.state.data[0].gallery.title : null;
         const { photoIndex, isOpen } = this.state;
+
         return (
             <div className='block-page'>
                 {
                     data ?
                         <Container maxWidth="md" style={{ minHeight: 'calc(100vh - 160px)'}}>
+                            <SpinnerLoad/>
                             <h1 className='title-page'>{galleryTitle}</h1>
+                            <h2 className='title-page'>{designerTitle}</h2>
                             {
                                 !bigImage
-                                ? <Grid container spacing={4} className='grid'>{this.showCard()}</Grid>
+                                ? <Grid container spacing={4} className='grid'>{this.showCard(this.state.showElement)}</Grid>
 
                                 :
                                     <Lightbox reactModalStyle={{ zIndex: '1100'}}
@@ -113,9 +145,8 @@ class GalleryItem extends Component {
                                         }
                                     />
                             }
+                            <BackLink showLink={this.state.showBackLink}/>
                         </Container>
-
-
                         :
                         <SpinnerLoad/>
                 }

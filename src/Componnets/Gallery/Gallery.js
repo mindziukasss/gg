@@ -8,6 +8,7 @@ import Container from "@material-ui/core/Container";
 
 import './style/gallery.scss'
 import SpinnerLoad from "../UI/SpinnerLoad";
+import BackLink from "../UI/BackLink";
 
 const linkMedia = 'http://127.0.0.1:8000/uploads/galleries/';
 
@@ -53,14 +54,13 @@ class Gallery extends Component {
                 <Card className='card-galleries gallery'>
                     <CardActionArea href={this.props.match.params.gallery + '/' + gallery.subMenu.slug}>
                         <CardMedia
-                            className='box-gallery'
-                            image={linkMedia + gallery.gallery.media[0].fileName}
-                        >{gallery.gallery.title}</CardMedia>
+                            className='box-gallery' image={linkMedia + gallery.gallery.media[0].fileName}>
+                            {gallery.gallery.title}
+                        </CardMedia>
                     </CardActionArea>
                 </Card>
             </Grid>;
         }
-
 
         if(i === this.state.showElement){
             setTimeout(() => {
@@ -85,6 +85,7 @@ class Gallery extends Component {
                             <Grid container spacing={4} className='grid'>
                                 {this.showCard(this.state.showElement)}
                             </Grid>
+                            <BackLink showLink={true}/>
                         </Container>
                         :
                         <SpinnerLoad/>

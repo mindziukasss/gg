@@ -14,4 +14,9 @@ html, body {
 
 .ReactModal__Overlay.ReactModal__Overlay--after-open {
   z-index: 1100 !important;
+  background-color: rgba(0, 0, 0, 0.85) !important;
+}
+
+.fs-12 {
+  font-size: 12px;
 }

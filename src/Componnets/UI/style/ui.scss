@@ -2,11 +2,10 @@
   opacity: 1;
 }
 
-
 .spinnerLoad {
   -webkit-animation: cssAnimationSpinner 3s forwards;
   animation: cssAnimationSpinner 3s forwards;
-  animation-duration: 3s;
+  //animation-duration: 1s;
 }
 
 @keyframes cssAnimationSpinner {
@@ -19,5 +18,38 @@
   100% {
     opacity: 0;
   }
+}
 
+@-webkit-keyframes cssAnimationSpinner {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.link-home {
+  opacity: 0;
+}
+
+.link-home {
+  -webkit-animation: cssAnimationLink 4s forwards;
+  animation: cssAnimationLink 4s forwards;
+  animation-duration: 4s;
+}
+
+@keyframes cssAnimationLink {
+  0% {
+    opacity: 0;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

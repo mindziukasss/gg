@@ -11,7 +11,6 @@
 
   .box-gallery {
     min-height: 250px;
-    white-space: nowrap;
     margin-bottom: unset;
     font-size: 35px;
     display: flex;
@@ -19,6 +18,7 @@
     align-items: center;
     color: #ffffff;
     text-align: center;
+    white-space: break-spaces;
 
     &:hover {
       background-color: #cfd8dc;

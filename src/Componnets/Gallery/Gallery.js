@@ -53,8 +53,7 @@ class Gallery extends Component {
             return <Grid key={i} item xs={12} sm={12} md={4} lg={4}>
                 <Card className='card-galleries gallery'>
                     <CardActionArea href={this.props.match.params.gallery + '/' + gallery.subMenu.slug}>
-                        <CardMedia
-                            className='box-gallery' image={linkMedia + gallery.gallery.media[0].fileName}>
+                        <CardMedia className='box-gallery' image={linkMedia + gallery.gallery.media[0].fileName}>
                             {gallery.gallery.title}
                         </CardMedia>
                     </CardActionArea>

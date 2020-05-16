@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import ReactHtmlParser from 'react-html-parser';
-import CircularProgress from '@material-ui/core/CircularProgress';
-
 import {NetworkHelper} from "../Service/NetworkHelper";
 import './style/page.scss'
+import SpinnerLoad from "../UI/SpinnerLoad";
+import NotFound from "../UI/NotFound";
 
 class Page extends Component {
 
@@ -32,20 +32,27 @@ class Page extends Component {
         }
     }
 
+    isPage(data)
+    {
+        if (data.length > 0) {
+            return  <div className={'title-page'}>
+                <h1>{data[0].title}</h1>
+                {ReactHtmlParser(data[0].description)}
+            </div>
+
+        } else {
+            return <NotFound/>
+        }
+    }
+
     render() {
-        const data = this.state.data[0];
         return (
             <div className={'block-page'}>
                 {
-                    data ?
-                        <div className={'title-page'}>
-                            <h1>{data.title}</h1>
-                            {ReactHtmlParser(data.description)}
-                        </div>
+                    this.state.data ?
+                       <div>{this.isPage(this.state.data)}</div>
                         :
-                        <div className={'circular-page'}>
-                            <CircularProgress className={'circular-size'} disableShrink/>
-                        </div>
+                        <SpinnerLoad />
                 }
             </div>
 

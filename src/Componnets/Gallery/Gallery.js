@@ -4,11 +4,11 @@ import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardMedia from "@material-ui/core/CardMedia";
-import Container from "@material-ui/core/Container";
-
+import Container from "@material-ui/core/Container"
 import './style/gallery.scss'
 import SpinnerLoad from "../UI/SpinnerLoad";
 import BackLink from "../UI/BackLink";
+import NotFound from "../UI/NotFound";
 
 const linkMedia = 'http://127.0.0.1:8000/uploads/galleries/';
 
@@ -17,7 +17,7 @@ class Gallery extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
+            data: false,
             holder: [],
             showElement: 0
         }
@@ -68,25 +68,36 @@ class Gallery extends Component {
                     data: this.state.holder,
                     holder: this.state.holder,
                     showElement: ++this.state.showElement
-                })
+                });
             }, 500);
         }
     };
 
+
+    isGalleries(data)
+    {
+        if (data.length > 0) {
+            const showLInk = data.length > 0 ? true : false;
+            return  <Container maxWidth="md" style={{minHeight: 'calc(100vh - 160px)'}}>
+                <SpinnerLoad data={true}/>
+                <h1 className='title-page'>Galerija</h1>
+                <Grid container spacing={4} className='grid'>
+                    {this.showCard(this.state.showElement)}
+                </Grid>
+                <BackLink showLink={showLInk}/>
+            </Container>
+
+        } else {
+            return <NotFound/>
+        }
+    }
+
     render() {
-        const data = this.state.data;
         return (
             <div className='block-page'>
                 {
-                    data ?
-                        <Container maxWidth="md" style={{minHeight: 'calc(100vh - 160px)'}}>
-                            <SpinnerLoad/>
-                            <h1 className='title-page'>Galerija</h1>
-                            <Grid container spacing={4} className='grid'>
-                                {this.showCard(this.state.showElement)}
-                            </Grid>
-                            <BackLink showLink={true}/>
-                        </Container>
+                    this.state.data ?
+                        <div>{this.isGalleries(this.state.data)}</div>
                         :
                         <SpinnerLoad/>
                 }

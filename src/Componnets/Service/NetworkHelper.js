@@ -11,8 +11,9 @@ export class NetworkHelper
                 'Content-Type': 'application/json',
             }
         })
-            .then((page) =>
-                page.json()
-            )
+            .then((page) => page.json())
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }
 }

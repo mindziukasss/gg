@@ -9,6 +9,7 @@ import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css'
 import SpinnerLoad from "../UI/SpinnerLoad";
 import BackLink from "../UI/BackLink";
+import NotFound from "../UI/NotFound";
 
 const linkMedia = 'http://127.0.0.1:8000/uploads/galleries/';
 
@@ -16,7 +17,7 @@ class GalleryItem extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [],
+            data: false,
             bigImage: null,
             clickImage: null,
             photoIndex: 0,
@@ -54,7 +55,7 @@ class GalleryItem extends Component {
     handleClick = (event, clickImage) => {
         let images = [];
         event.map((m) => {
-                images.push(linkMedia + m.fileName,);
+              return  images.push(linkMedia + m.fileName);
             }
         )
 
@@ -107,46 +108,54 @@ class GalleryItem extends Component {
         }
     };
 
+    isGalleryItem(data)
+    {
+        if (data.length > 0) {
+            const designerTitle = this.state.data[0] ? this.state.data[0].title : null
+            const bigImage = this.state.bigImage ? this.state.bigImage : null;
+            const galleryTitle = this.state.data[0] ? this.state.data[0].gallery.title : null;
+            const { photoIndex } = this.state;
+         return <Container maxWidth="md" style={{ minHeight: 'calc(100vh - 160px)'}}>
+                <SpinnerLoad/>
+                <h1 className='title-page'>{galleryTitle}</h1>
+                <h2 className='title-page'>{designerTitle}</h2>
+                {
+                    !bigImage
+                        ? <Grid container spacing={4} className='grid'>{this.showCard(this.state.showElement)}</Grid>
+
+                        :
+                        <Lightbox reactModalStyle={{ zIndex: '1100'}}
+                                  mainSrc={bigImage[(photoIndex)]}
+                                  nextSrc={bigImage[(photoIndex + 1) % bigImage.length]}
+                                  prevSrc={bigImage[(photoIndex + bigImage.length - 1) % bigImage.length]}
+                                  onCloseRequest={() => this.handleClose({ isOpen: false })}
+                                  onMovePrevRequest={() =>
+                                      this.setState({
+                                          photoIndex: (photoIndex + bigImage.length - 1) % bigImage.length,
+                                      })
+                                  }
+                                  onMoveNextRequest={() =>
+                                      this.setState({
+                                          photoIndex: (photoIndex + 1) % bigImage.length,
+                                      })
+                                  }
+                        />
+                }
+                <BackLink showLink={this.state.showBackLink}/>
+            </Container>
+
+        } else {
+            return <NotFound/>
+        }
+    }
+
     render() {
-        const data = this.state.data;
-        console.log(data[0])
-        const designerTitle = this.state.data[0] ? this.state.data[0].title : null
-        const bigImage = this.state.bigImage ? this.state.bigImage : null;
-        const galleryTitle = this.state.data[0] ? this.state.data[0].gallery.title : null;
-        const { photoIndex, isOpen } = this.state;
 
         return (
             <div className='block-page'>
                 {
-                    data ?
-                        <Container maxWidth="md" style={{ minHeight: 'calc(100vh - 160px)'}}>
-                            <SpinnerLoad/>
-                            <h1 className='title-page'>{galleryTitle}</h1>
-                            <h2 className='title-page'>{designerTitle}</h2>
-                            {
-                                !bigImage
-                                ? <Grid container spacing={4} className='grid'>{this.showCard(this.state.showElement)}</Grid>
-
-                                :
-                                    <Lightbox reactModalStyle={{ zIndex: '1100'}}
-                                        mainSrc={bigImage[(photoIndex)]}
-                                        nextSrc={bigImage[(photoIndex + 1) % bigImage.length]}
-                                        prevSrc={bigImage[(photoIndex + bigImage.length - 1) % bigImage.length]}
-                                        onCloseRequest={() => this.handleClose({ isOpen: false })}
-                                        onMovePrevRequest={() =>
-                                            this.setState({
-                                                photoIndex: (photoIndex + bigImage.length - 1) % bigImage.length,
-                                            })
-                                        }
-                                        onMoveNextRequest={() =>
-                                            this.setState({
-                                                photoIndex: (photoIndex + 1) % bigImage.length,
-                                            })
-                                        }
-                                    />
-                            }
-                            <BackLink showLink={this.state.showBackLink}/>
-                        </Container>
+                    this.state.data ?
+                        <div>{this.isGalleryItem(this.state.data)}</div>
                         :
                         <SpinnerLoad/>
                 }

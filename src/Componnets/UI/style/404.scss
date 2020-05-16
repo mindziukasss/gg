@@ -1,0 +1,72 @@
+#notfound {
+  height: 65vh;
+  .notfound {
+    text-align: center;
+    padding-top: 50px;
+  }
+}
+
+.notfound {
+  line-height: 1.4;
+
+  .notfound-404 {
+    position: relative;
+    height: 150px;
+    line-height: 150px;
+    margin-bottom: 25px;
+
+    h1 {
+      font-family: 'Titillium Web', sans-serif;
+      font-size: 186px;
+      font-weight: 900;
+      margin: 0px;
+      text-transform: uppercase;
+      background: url('/image/404.png');
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: cover;
+      background-position: center;
+    }
+  }
+
+  h2 {
+    font-family: 'Titillium Web', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 0px;
+    text-transform: uppercase;
+  }
+
+  a {
+    font-family: 'Titillium Web', sans-serif;
+    display: inline-block;
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, 0.87);;
+    text-decoration: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.08);
+    padding: 10px 40px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 1px;
+    margin-top: 15px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .notfound .notfound-404 {
+    height: 110px;
+    line-height: 110px;
+  }
+
+  .notfound .notfound-404 h1 {
+    font-size: 120px;
+  }
+}

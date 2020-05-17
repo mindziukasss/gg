@@ -23,6 +23,12 @@
       text-decoration: unset;
     }
 
+    .selected {
+      text-decoration: none;
+      background-color: rgba(0, 0, 0, 0.08);
+      padding: 8px 0 11px 0;
+      border-radius: 5px;
+    }
   }
 
 }

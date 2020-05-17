@@ -14,7 +14,12 @@ class Header extends Component {
 
     constructor() {
         super();
-        this.state={data:[]}
+        this.state={
+            data: [],
+            galleryAction: 'textDecorationUnset',
+            activeLink: null,
+            pageAction: 'textDecorationUnset'
+        }
     }
 
     componentDidMount()
@@ -25,18 +30,54 @@ class Header extends Component {
             {
                 this.setState({data: response})
             })
+
+    }
+
+    handleClick = (event, i)=> {
+        if (event) {
+            this.setState({
+                galleryAction: 'textDecorationUnset selected',
+                activeLink: i
+            })
+        } else {
+            this.setState({
+                galleryAction: 'textDecorationUnset',
+                activeLink: i
+            })
+        }
+    };
+
+    activeNavBar(menu)
+    {
+        if (this.state.activeLink) {
+            return menu.menuId === this.state.activeLink ? ' selected' : '';
+        } else {
+            return '/'+menu.type+'/'+menu.slug === window.location.pathname ? ' selected' : '';
+        }
+    }
+
+    unsetSelected()
+    {
+        this.setState({
+            galleryAction: 'textDecorationUnset',
+            activeLink: null
+        })
     }
 
     showMenu = () => (
         this.state.data.map((menu, i) => {
             if (menu.subMenu) {
-                return <NavLink key={menu.menuId} to={`#`}  className='textDecorationUnset'>
-                    <SubMenu subMenu = {menu.subMenu} menuSlug={`/${menu.type}`} title = {menu.title}/>
-                </NavLink>
+                return  <NavLink key={menu.menuId} to={`#`}  className={this.state.galleryAction + (window.location.pathname === '/' + menu.type ? ' selected' : '')}
+                                 onClick={() => this.handleClick(true, i)}>
+                            <SubMenu subMenu = {menu.subMenu} menuSlug={`/${menu.type}`} title = {menu.title}/>
+                        </NavLink>
             } else {
-                return <NavLink key={menu.menuId} to={`/${menu.type}/${menu.slug}`} className='textDecorationUnset'>
-                    <Button>{menu.title}</Button>
-                </NavLink>
+                return  <NavLink key={menu.menuId} to={`/${menu.type}/${menu.slug}`}
+                                 onClick={() => this.handleClick(false, menu.menuId)}
+                                 className={this.state.pageAction + this.activeNavBar(menu)}
+                                     >
+                                     <Button>{menu.title}</Button>
+                        </NavLink>
             }
         })
     );
@@ -48,8 +89,9 @@ class Header extends Component {
             <AppBar className='header' style={{boxSizing: 'unset'}}>
                 <Toolbar className='displayFlex'>
                     <div className='headerLogo'>
-                        <Link to={'/'}><div className='logo'>
-                        </div></Link>
+                        <Link to={'/'} onClick={() => this.unsetSelected()}>
+                            <div className='logo'></div>
+                        </Link>
                     </div>
                     <div style={{marginLeft: '65%'}} >
                         {this.showMenu()}

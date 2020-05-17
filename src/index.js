@@ -5,11 +5,13 @@ import './App.scss';
 
 import { BrowserRouter } from 'react-router-dom';
 import Routes from "./routes";
+import Cookie from "./Componnets/UI/Cookie";
 
 
 const App = (props) => {
     return (
         <BrowserRouter>
+            <Cookie/>
             <Routes {...props}/>
         </BrowserRouter>
     )

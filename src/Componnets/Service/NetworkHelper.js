@@ -1,8 +1,9 @@
+
 export class NetworkHelper
 {
     static get(url)
     {
-        const BASE_URl = 'http://127.0.0.1:8000/api/';
+        const BASE_URl = process.env.REACT_APP_BASE_API_URL;
 
         return fetch(BASE_URl + url, {
             method: 'GET',

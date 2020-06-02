@@ -11,7 +11,7 @@ import SpinnerLoad from "../UI/SpinnerLoad";
 import BackLink from "../UI/BackLink";
 import NotFound from "../UI/NotFound";
 
-const linkMedia = 'http://127.0.0.1:8000/uploads/galleries/';
+const linkMedia = process.env.REACT_APP_BASE_IMAGE;
 
 class GalleryItem extends Component {
     constructor(props) {

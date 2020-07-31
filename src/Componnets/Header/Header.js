@@ -68,7 +68,7 @@ class Header extends Component {
         this.state.data.map((menu, i) => {
             if (menu.subMenu) {
                 return  <NavLink key={menu.menuId} to={`#`}  className={this.state.galleryAction + (window.location.pathname === '/' + menu.type ? ' selected' : '')}
-                                 onClick={() => this.handleClick(true, i)}>
+                                 onClick={() => this.handleClick(true, menu.menuId)}>
                             <SubMenu subMenu = {menu.subMenu} menuSlug={`/${menu.type}`} title = {menu.title}/>
                         </NavLink>
             } else {
@@ -83,20 +83,24 @@ class Header extends Component {
     );
 
     render() {
-
         return (
 
             <AppBar className='header' style={{boxSizing: 'unset'}}>
-                <Toolbar className='displayFlex'>
-                    <div className='headerLogo'>
-                        <Link to={'/'} onClick={() => this.unsetSelected()}>
-                            <div className='logo'></div>
-                        </Link>
-                    </div>
-                    <div style={{marginLeft: '65%'}} >
-                        {this.showMenu()}
-                    </div>
-                </Toolbar>
+                { this.state.data ?
+                    <Toolbar className='displayFlex'>
+                        <div className='headerLogo'>
+                            <Link to={'/'} onClick={() => this.unsetSelected()}>
+                                <div className='logo'></div>
+                            </Link>
+                        </div>
+                        <div style={{marginLeft: '65%'}}>
+                            {this.showMenu()}
+                        </div>
+                    </Toolbar>
+                    :
+                    <div></div>
+
+                }
             </AppBar>
         );
     }
